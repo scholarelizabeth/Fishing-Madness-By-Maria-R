@@ -36,6 +36,7 @@ fish_names = [
     "Marsh Eel(common)", "Purple Dartfish(Common)", "Angler Fish(common)", "Bubblefish(common)"
 ]
 
+
 fish_files = [
     f"Speckled Great Octopus (Very Rare).jpg",
     "Narwhal ( Very Rare).jpg",
@@ -91,7 +92,7 @@ while running:
         state = "Fish on"
     
     if state == "Fish on":
-        # Press Arrow key to reel in
+        # Press Arrow key RIGHT to reel in
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]:
             state = "Reel in"
@@ -115,7 +116,7 @@ while running:
         state = "Waiting"
         current_fish = None
 
-    pygame.draw.rect(screen, (50, 50, 50), (950, 0, 250, 700))
+    pygame.draw.rect(screen, (155, 48, 255, 255), (950, 0, 250, 700))
     title_surf = font.render("Fish Caught", True, (255, 255, 255))
     screen.blit(title_surf, (970, 20))
 
@@ -157,4 +158,5 @@ while running:
     clock.tick(60)
 
 pygame.quit()
+
 
