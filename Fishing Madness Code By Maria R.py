@@ -22,6 +22,7 @@ pygame.mixer.music.play(-1)
 Calm_Catch_sound = pygame.mixer.Sound("Calm_Catch.wav")
 Intense_Catch_sound = pygame.mixer.Sound("Intense_Catch.wav")
 
+
 pygame.init()
 screen = pygame.display.set_mode((1200, 600))
 pygame.display.set_caption("Fishing Madness")
@@ -52,9 +53,14 @@ fish_files = [
 fish_images = [pygame.image.load(f).convert_alpha() for f in fish_files]
 
 fish_pool = list(range(10))
-rarity_weights = [20, 20, 20, 20, 20, 5, 5, 5, 1, 1] 
+rarity_weights = [20, 20, 20, 20, 20, 5, 5, 5, 1, 1]
 
-state = "Waiting"
+state = "Title Screen"
+
+start_button_rect = pygame.Rect(500, 250, 200, 80)
+pygame.mixer.music.load('Title Screen Fishing Madness.mp3')
+pygame.mixer.music.play(-1)
+
 inventory = {i: 0 for i in range(10)}
 current_fish = None
 show_timer = 0
@@ -67,6 +73,13 @@ while running:
     screen.fill((30, 144, 255)) 
 
     for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN and state == "Title Screen":
+            if start_button_rect.collidepoint(event.pos):
+                state = "Let's Fish"
+                bite_timer = ticks + random.randint(2000, 5000)
+                pygame.mixer.music.fadeout(1000)
+                pygame.mixer.music.load("3-19 Run, Jump, Throw! 1.mp3")
+                pygame.mixer.music.play(-1)
         if event.type == pygame.QUIT:
             running = False
         
@@ -151,7 +164,21 @@ while running:
             count_surf = font.render(f"Total {fish_name}s: {total_caught}", True, (0, 0, 0))
     
             screen.blit(name_surf, (250, 70))
-            screen.blit(count_surf, (200, 20)) 
+            screen.blit(count_surf, (200, 20))
+            
+    if state == "Title Screen":
+        screen.fill((30, 144, 255))
+        
+    
+        title_font = pygame.font.SysFont("Arial", 80)
+        title_surf = title_font.render("Fishing Madness", True, (255, 255, 255))
+        screen.blit(title_surf, (350, 100))
+        
+
+        pygame.draw.rect(screen, (0, 200, 0), start_button_rect)
+        btn_font = pygame.font.SysFont("Arial", 40)
+        btn_surf = btn_font.render("START", True, (255, 255, 255))
+        screen.blit(btn_surf, (545, 265))          
 
 
     pygame.display.flip()
@@ -159,4 +186,6 @@ while running:
 
 pygame.quit()
 
+
+  
 
