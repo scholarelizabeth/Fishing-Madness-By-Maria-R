@@ -167,7 +167,7 @@ while running:
             screen.blit(count_surf, (200, 20))
             
     if state == "Title Screen":
-        screen.fill((30, 144, 255))
+        screen.fill((155, 48, 255, 255))
         
     
         title_font = pygame.font.SysFont("Arial", 80)
