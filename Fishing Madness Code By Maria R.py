@@ -58,7 +58,7 @@ rarity_weights = [20, 20, 20, 20, 20, 5, 5, 5, 1, 1]
 state = "Title Screen"
 
 start_button_rect = pygame.Rect(500, 250, 200, 80)
-pygame.mixer.music.load('Title Screen Fishing Madness.mp3')
+pygame.mixer.music.load('Wii Sports Resort Title Screen.mp3')
 pygame.mixer.music.play(-1)
 
 inventory = {i: 0 for i in range(10)}
@@ -184,8 +184,4 @@ while running:
     pygame.display.flip()
     clock.tick(60)
 
-pygame.quit()
-
-
-  
-
+pygame.quit(
