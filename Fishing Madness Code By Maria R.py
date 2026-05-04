@@ -175,7 +175,7 @@ while running:
         screen.blit(title_surf, (350, 100))
         
 
-        pygame.draw.rect(screen, (0, 200, 0), start_button_rect)
+        pygame.draw.rect(screen, (0, 178, 238, 255), start_button_rect)
         btn_font = pygame.font.SysFont("Arial", 40)
         btn_surf = btn_font.render("START", True, (255, 255, 255))
         screen.blit(btn_surf, (545, 265))          
