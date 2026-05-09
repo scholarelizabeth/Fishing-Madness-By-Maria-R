@@ -52,6 +52,11 @@ fish_files = [
 
 fish_images = [pygame.image.load(f).convert_alpha() for f in fish_files]
 
+
+title_bg = pygame.image.load("Fishing Madness Background.jpg").convert()
+title_bg = pygame.transform.scale(title_bg, (1200, 600))
+
+
 fish_pool = list(range(10))
 rarity_weights = [20, 20, 20, 20, 20, 5, 5, 5, 1, 1]
 
@@ -167,7 +172,7 @@ while running:
             screen.blit(count_surf, (200, 20))
             
     if state == "Title Screen":
-        screen.fill((155, 48, 255, 255))
+        screen.blit(title_bg, (0, 0))
         
     
         title_font = pygame.font.SysFont("Arial", 80)
@@ -185,3 +190,4 @@ while running:
     clock.tick(60)
 
 pygame.quit()
+
