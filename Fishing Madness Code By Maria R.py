@@ -56,6 +56,10 @@ fish_images = [pygame.image.load(f).convert_alpha() for f in fish_files]
 title_bg = pygame.image.load("Fishing Madness Background.jpg").convert()
 title_bg = pygame.transform.scale(title_bg, (1200, 600))
 
+game_bg = pygame.image.load("Second Fishing Background.png").convert()
+game_bg = pygame.transform.scale(game_bg, (1200, 600))
+
+
 
 fish_pool = list(range(10))
 rarity_weights = [20, 20, 20, 20, 20, 5, 5, 5, 1, 1]
@@ -75,8 +79,8 @@ bite_timer = 0
 running = True
 while running:
     ticks = pygame.time.get_ticks()
-    screen.fill((30, 144, 255)) 
-
+    screen.blit(game_bg, (0, 0))
+    
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN and state == "Title Screen":
             if start_button_rect.collidepoint(event.pos):
@@ -165,8 +169,8 @@ while running:
             fish_name = fish_names[current_fish]
             total_caught = inventory[current_fish]
 
-            name_surf = font.render(f"You caught a {fish_name}!", True, (0, 0, 0))
-            count_surf = font.render(f"Total {fish_name}s: {total_caught}", True, (0, 0, 0))
+            name_surf = font.render(f"You caught a {fish_name}!", True, (255, 20, 147, 255))
+            count_surf = font.render(f"Total {fish_name}s: {total_caught}", True, (255, 20, 147, 255))
     
             screen.blit(name_surf, (250, 70))
             screen.blit(count_surf, (200, 20))
@@ -190,4 +194,3 @@ while running:
     clock.tick(60)
 
 pygame.quit()
-
