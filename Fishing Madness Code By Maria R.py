@@ -29,25 +29,26 @@ pygame.display.set_caption("Fishing Madness")
 font = pygame.font.SysFont("Arial", 36)
 clock = pygame.time.Clock()
 
-fish_difficulty = [2.5, 2.5, 5, 5, 5, 10, 10, 10, 10, 10]
+fish_difficulty = [10, 10, 10, 10, 5, 5, 5, 2.5, 2.5,]
 
 # Fish Types
 fish_names = [
-    "Great Octopus(Very Rare)", "Narwhal(Very Rare)", "Starfish1(Rare)", "Midnight Eel(Rare)", "Spiked Dartfish(Rare)", 
-    "Marsh Eel(common)", "Purple Dartfish(Common)", "Angler Fish(common)", "Bubblefish(common)"
+    "Bubblefish (Common).jpg", "AnglerFish (Common).jpg", "Purple Dartfish (Common).jpg", "Marsh Eel (Common).jpg", "Tail Spiked Dartfish (Rare).jpg",
+    "Midnight Eel (Rare).jpg", "Seafoam Magenta Starfish (Rare).jpg", "Narwhal ( Very Rare).jpg", "Speckled Great Octopus (Very Rare).jpg"    
 ]
 
 
 fish_files = [
-    f"Speckled Great Octopus (Very Rare).jpg",
-    "Narwhal ( Very Rare).jpg",
-    "Seafoam Magenta Starfish (Rare).jpg",
-    "Midnight Eel (Rare).jpg",
-    "Tail Spiked Dartfish (Rare).jpg",
-    "Marsh Eel (Common).jpg",
-    "Purple Dartfish (Common).jpg",
+    f"Bubblefish (Common).jpg",
     "AnglerFish (Common).jpg",
-    "Bubblefish (Common).jpg"
+    "Purple Dartfish (Common).jpg",
+    "Marsh Eel (Common).jpg",
+    "Tail Spiked Dartfish (Rare).jpg",
+    "Midnight Eel (Rare).jpg",
+    "Seafoam Magenta Starfish (Rare).jpg",
+    "Narwhal ( Very Rare).jpg",
+    "Speckled Great Octopus (Very Rare).jpg",
+
 ]
 
 fish_images = [pygame.image.load(f).convert_alpha() for f in fish_files]
