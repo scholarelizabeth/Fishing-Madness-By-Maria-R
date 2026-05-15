@@ -61,7 +61,6 @@ game_bg = pygame.image.load("Second Fishing Background.png").convert()
 game_bg = pygame.transform.scale(game_bg, (1200, 600))
 
 
-
 fish_pool = list(range(10))
 rarity_weights = [20, 20, 20, 20, 20, 5, 5, 5, 1, 1]
 
@@ -70,6 +69,12 @@ state = "Title Screen"
 start_button_rect = pygame.Rect(500, 250, 200, 80)
 pygame.mixer.music.load('Wii Sports Resort Title Screen.mp3')
 pygame.mixer.music.play(-1)
+
+play_button_rect = pygame.Rect(500, 480, 200, 70)
+
+howto_bg = pygame.image.load("How to play.jpg").convert()
+howto_bg = pygame.transform.scale(howto_bg, (1200, 600))
+
 
 inventory = {i: 0 for i in range(10)}
 current_fish = None
@@ -83,15 +88,22 @@ while running:
     screen.blit(game_bg, (0, 0))
     
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN and state == "Title Screen":
-            if start_button_rect.collidepoint(event.pos):
-                state = "Let's Fish"
-                bite_timer = ticks + random.randint(2000, 5000)
-                pygame.mixer.music.fadeout(1000)
-                pygame.mixer.music.load("3-19 Run, Jump, Throw! 1.mp3")
-                pygame.mixer.music.play(-1)
-        if event.type == pygame.QUIT:
-            running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if state == "Title Screen":
+                if start_button_rect.collidepoint(event.pos):
+                    state = "How to Play"
+                    pygame.mixer.music.fadeout(1000)
+                    pygame.mixer.music.load("Great Fairy Fountain recording played on my piano by me.mp3") 
+                    pygame.mixer.music.play(-1)
+            
+            elif state == "How to Play":
+                if play_button_rect.collidepoint(event.pos):
+                    state = "Let's Fish"
+                    bite_timer = ticks + random.randint(2000, 5000)
+                    pygame.mixer.music.fadeout(1500) 
+                    pygame.mixer.music.load("3-19 Run, Jump, Throw! 1.mp3")
+                    pygame.mixer.music.play(-1, fade_ms=1500)
+
         
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and state == "Waiting":
@@ -175,6 +187,34 @@ while running:
     
             screen.blit(name_surf, (250, 70))
             screen.blit(count_surf, (200, 20))
+
+    elif state == "How to Play":
+        screen.blit(howto_bg, (0, 0))
+        
+        howto_title_font = pygame.font.SysFont("Arial", 60, bold=True)
+        howto_step_font = pygame.font.SysFont("Arial", 28, bold=True)
+        
+        pink_color = (255, 105, 180)
+        title_surf = howto_title_font.render("How to Play", True, pink_color)
+        screen.blit(title_surf, (600 - title_surf.get_width() // 2, 50))
+        
+        white_color = (255, 255, 255)
+        step1 = howto_step_font.render("Step 1: Press Space key until screen says reel in.", True, white_color)
+        step2 = howto_step_font.render("Step 2: Keep pressing the RIGHT arrow key until your fish appears.", True, white_color)
+        step3 = howto_step_font.render("Step 3: Try to get all 9 fish, some are harder/rarer than others!", True, white_color)
+        
+        screen.blit(step1, (600 - step1.get_width() // 2, 180))
+        screen.blit(step2, (600 - step2.get_width() // 2, 260))
+        screen.blit(step3, (600 - step3.get_width() // 2, 340))
+        
+        pygame.draw.rect(screen, (0, 178, 238), play_button_rect, border_radius=5)
+        
+        play_btn_font = pygame.font.SysFont("Arial", 40, bold=True)
+        play_surf = play_btn_font.render("PLAY", True, white_color)
+        screen.blit(play_surf, (play_button_rect.centerx - play_surf.get_width() // 2, 
+        play_button_rect.centery - play_surf.get_height() // 2))
+
+            
             
     if state == "Title Screen":
         screen.blit(title_bg, (0, 0))
@@ -195,3 +235,4 @@ while running:
     clock.tick(60)
 
 pygame.quit()
+
